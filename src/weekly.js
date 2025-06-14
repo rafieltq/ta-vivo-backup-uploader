@@ -19,6 +19,8 @@ const uploadDaily = async () => {
 
   try {
     await s3.send(command)
+    // delete the file from the local directory
+    fs.unlinkSync(filePath)
     console.log(`✅ Daily backup uploaded: ${key}`)
   } catch (error) {
     console.error('❌ Upload error:', error)

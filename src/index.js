@@ -17,6 +17,9 @@ const uploadFile = async () => {
     .from(supabaseBucket)
     .upload(fileName, buf)
 
+  // delete the file from the local directory
+  fs.unlinkSync(__dirname + '/file/dump.sql.tar.gz')
+
   console.log('🚀 ~ file: index.js ~ line 13 ~ uploadFile ~ error', error)
   console.log('🚀 ~ file: index.js ~ line 15 ~ uploadFile ~ data', data)
 }

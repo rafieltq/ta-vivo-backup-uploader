@@ -1,0 +1,32 @@
+# Example crontab configuration for ta-vivo-backup-uploader
+# Edit with: crontab -e
+# View with: crontab -l
+
+# Set PATH to include docker and make commands
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Set project directory (CHANGE THIS TO YOUR ACTUAL PATH)
+PROJECT_DIR=/home/rafiel/Projects/anncar_files/ta-vivo-backup-uploader
+
+# Full backup creation and upload - Daily at 2:00 AM
+0 2 * * * cd $PROJECT_DIR && ./scripts/cron-full-backup.sh
+
+# Daily backup upload only (if backup already exists) - Every 6 hours
+0 */6 * * * cd $PROJECT_DIR && ./scripts/cron-daily.sh
+
+# Weekly backup upload - Every Sunday at 3:00 AM
+0 3 * * 0 cd $PROJECT_DIR && ./scripts/cron-weekly.sh
+
+# Cleanup old backups - Every day at 4:00 AM
+0 4 * * * cd $PROJECT_DIR && ./scripts/cron-cleanup.sh
+
+# Alternative schedules (uncomment as needed):
+
+# More frequent full backup - Every 12 hours
+# 0 */12 * * * cd $PROJECT_DIR && ./scripts/cron-full-backup.sh
+
+# Weekly backup on different day - Every Friday at 11:00 PM
+# 0 23 * * 5 cd $PROJECT_DIR && ./scripts/cron-weekly.sh
+
+# Cleanup twice per week - Monday and Thursday at 5:00 AM
+# 0 5 * * 1,4 cd $PROJECT_DIR && ./scripts/cron-cleanup.sh

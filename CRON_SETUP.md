@@ -55,7 +55,7 @@ This guide explains how to set up automated backups using crontab on your server
 - Automatic log rotation (old logs are automatically deleted)
 
 ### Error Handling
-- Scripts check for required dependencies (Podman, .env file)
+- Scripts check for required dependencies (Docker, .env file)
 - Validate backup files exist before uploading
 - Automatic container building if images don't exist
 - Proper exit codes for cron monitoring
